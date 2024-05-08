@@ -17,6 +17,9 @@
 		9443E16F2B0B4DE300A4A398 /* ActionUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9443E16E2B0B4DE300A4A398 /* ActionUITestsLaunchTests.swift */; };
 		9443E17C2B0B894E00A4A398 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9443E17B2B0B894E00A4A398 /* ActivityView.swift */; };
 		9455C5EC2B3C4CBB00168702 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9455C5EB2B3C4CBB00168702 /* Activity.swift */; };
+		94711BCA2BEBA53D008D2DD2 /* actionWrapper.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94711BC82BEBA53D008D2DD2 /* actionWrapper.pb.swift */; };
+		94711BCB2BEBA53D008D2DD2 /* actionWrapper.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94711BC92BEBA53D008D2DD2 /* actionWrapper.grpc.swift */; };
+		94711BCD2BEBA65F008D2DD2 /* AuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94711BCC2BEBA65F008D2DD2 /* AuthClient.swift */; };
 		9471ED4C2B57F38B005CF48D /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9471ED4B2B57F38A005CF48D /* UserInfo.swift */; };
 		947968D42B27443100ABC8EA /* ActivityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947968D32B27443000ABC8EA /* ActivityListView.swift */; };
 /* End PBXBuildFile section */
@@ -52,6 +55,9 @@
 		9443E16E2B0B4DE300A4A398 /* ActionUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9443E17B2B0B894E00A4A398 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		9455C5EB2B3C4CBB00168702 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		94711BC82BEBA53D008D2DD2 /* actionWrapper.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actionWrapper.pb.swift; sourceTree = "<group>"; };
+		94711BC92BEBA53D008D2DD2 /* actionWrapper.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actionWrapper.grpc.swift; sourceTree = "<group>"; };
+		94711BCC2BEBA65F008D2DD2 /* AuthClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthClient.swift; sourceTree = "<group>"; };
 		9471ED4B2B57F38A005CF48D /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		947968D32B27443000ABC8EA /* ActivityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +110,8 @@
 		9443E14E2B0B4DE000A4A398 /* Action */ = {
 			isa = PBXGroup;
 			children = (
+				94711BC72BEBA0DA008D2DD2 /* Proto */,
+				94711BC62BEBA0B8008D2DD2 /* Service */,
 				9455C5EA2B3C443400168702 /* Views */,
 				9455C5E92B3C3D2A00168702 /* Models */,
 				9443E14F2B0B4DE100A4A398 /* ActionApp.swift */,
@@ -156,6 +164,23 @@
 				947968D32B27443000ABC8EA /* ActivityListView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		94711BC62BEBA0B8008D2DD2 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				94711BCC2BEBA65F008D2DD2 /* AuthClient.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		94711BC72BEBA0DA008D2DD2 /* Proto */ = {
+			isa = PBXGroup;
+			children = (
+				94711BC92BEBA53D008D2DD2 /* actionWrapper.grpc.swift */,
+				94711BC82BEBA53D008D2DD2 /* actionWrapper.pb.swift */,
+			);
+			path = Proto;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,10 +316,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94711BCA2BEBA53D008D2DD2 /* actionWrapper.pb.swift in Sources */,
 				9455C5EC2B3C4CBB00168702 /* Activity.swift in Sources */,
 				9443E1522B0B4DE100A4A398 /* LoginView.swift in Sources */,
+				94711BCB2BEBA53D008D2DD2 /* actionWrapper.grpc.swift in Sources */,
 				9443E17C2B0B894E00A4A398 /* ActivityView.swift in Sources */,
 				9443E1542B0B4DE100A4A398 /* Action.swift in Sources */,
+				94711BCD2BEBA65F008D2DD2 /* AuthClient.swift in Sources */,
 				947968D42B27443100ABC8EA /* ActivityListView.swift in Sources */,
 				9471ED4C2B57F38B005CF48D /* UserInfo.swift in Sources */,
 				9443E1502B0B4DE100A4A398 /* ActionApp.swift in Sources */,
