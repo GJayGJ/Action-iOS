@@ -36,6 +36,14 @@ struct LoginView: View {
     // TODO: gRPC
     /// Login Button Pressed
     private func loginPressed() {
+        
+        let result = ActionWrapperService.shared.login(account: account, password: password)
+        
+        print(result)
+        
+        
+        // TODO: remaining logic
+        
         isLoggedIn.toggle()
         UserInfo.shared.account = self.account
         UserInfo.shared.password = self.password
