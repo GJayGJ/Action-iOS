@@ -14,7 +14,6 @@ struct LoginView: View {
     @State private var isLoggedIn = false
 
     var body: some View {
-        
         VStack {
             HStack {
                 Text("Account: ")
@@ -25,7 +24,6 @@ struct LoginView: View {
                 SecureField("Please enter your password", text: $password)
             }
             Button("Log In") {
-                // TODO: examine the result of gRPC
                 loginPressed()
             }.fullScreenCover(isPresented: $isLoggedIn, content: {
                 ActivityListView.init()
@@ -33,20 +31,21 @@ struct LoginView: View {
         }
     }
     
-    // TODO: gRPC
     /// Login Button Pressed
     private func loginPressed() {
         
         let result = ActionWrapperService.shared.login(account: account, password: password)
         
-        print(result)
-        
-        
-        // TODO: remaining logic
-        
-        isLoggedIn.toggle()
-        UserInfo.shared.account = self.account
-        UserInfo.shared.password = self.password
+        // TODO: Discuss the data structure of response to finalize
+        if result == account {
+            isLoggedIn = true
+            UserInfo.shared.account = self.account
+            UserInfo.shared.password = self.password
+        } else {
+            isLoggedIn = false
+            UserInfo.shared.account = ""
+            UserInfo.shared.password = ""
+        }
     }
 }
 
