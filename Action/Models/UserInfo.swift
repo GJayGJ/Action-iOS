@@ -10,7 +10,7 @@ import Foundation
 class UserInfo {
     static let shared: UserInfo = UserInfo()
     
-    var userName: String?
-    var account: String?
-    var password: String?
+    var userName: String = ""
+    var account: String = ""
+    var password: String = ""
 }

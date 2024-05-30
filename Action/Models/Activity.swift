@@ -7,26 +7,43 @@
 
 import Foundation
 
-struct Activity: Identifiable {
-    var id: String?
-    var name: String?
-    var maxNum: Int?
-    var startTime: Date?
-    var endTime: Date?
-    var createTime: Date?
+struct Activity: Hashable, Codable {
+    var amSeqNo: String?
+    var activityId: String?
+    var activityName: String?
+    var activityMaxNum: Int?
+    var activityStartTime: String?
+    var activityEndTime: String?
+    var creatTime: String?
     var createUser: String?
-    var updateTime: Date?
-    var updateUser: String?
+    var state: Int?
     
-    init(id: String? = nil, name: String? = nil, maxNum: Int? = nil, startTime: Date? = nil, endTime: Date? = nil, createTime: Date? = nil, createUser: String? = nil, updateTime: Date? = nil, updateUser: String? = nil) {
-        self.id = id
-        self.name = name
-        self.maxNum = maxNum
-        self.startTime = startTime
-        self.endTime = endTime
-        self.createTime = createTime
+    init(amSeqNo: String? = nil, activityId: String? = nil, activityName: String? = nil, activityMaxNum: Int? = nil, activityStartTime: String? = nil, activityEndTime: String? = nil, creatTime: String? = nil, createUser: String? = nil, state: Int? = nil) {
+        self.amSeqNo = amSeqNo
+        self.activityId = activityId
+        self.activityName = activityName
+        self.activityMaxNum = activityMaxNum
+        self.activityStartTime = activityStartTime
+        self.activityEndTime = activityEndTime
+        self.creatTime = creatTime
         self.createUser = createUser
-        self.updateTime = updateTime
-        self.updateUser = updateUser
+        self.state = state
     }
+    
+    // Differentiating
+    static func == (lhs: Activity, rhs: Activity) -> Bool {
+        lhs.activityId == rhs.activityId
+    }
+
+    // Hashing
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(activityId)
+    }
+}
+
+// TODO: To be deleted when the spec of API is amended.
+struct ActivityWrapper: Codable {
+    var activities: [Activity]?
+    var code: Int?
+    var msg: String?
 }

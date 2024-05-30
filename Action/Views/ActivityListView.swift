@@ -8,28 +8,45 @@
 import SwiftUI
 
 struct ActivityListView: View {
+    @State var description = ""
     @State var activities: [Activity] = [
-        Activity(id: "001", name: "TEST99", maxNum: 11, startTime: Date.now),
-        Activity(id: "002", name: "TEST2", maxNum: 12, startTime: Date.now),
-        Activity(id: "003", name: "TEST3", maxNum: 13, startTime: Date.now),
-        Activity(id: "004", name: "TEST4", maxNum: 14, startTime: Date.now),
-        Activity(id: "005", name: "TEST5", maxNum: 15, startTime: Date.now),
+        Activity(amSeqNo: "9999", activityId: "test9999", activityName: "TEST-9999", activityMaxNum: 99, activityStartTime: "2023-01-01 00:00:00", activityEndTime: "2023-01-01 00:00:00", creatTime: "2023-01-01 00:00:00", createUser: "Eason Chen", state: 1),
+        Activity(amSeqNo: "9998", activityId: "test9998", activityName: "TEST-9998", activityMaxNum: 99, activityStartTime: "2023-01-01 00:00:00", activityEndTime: "2023-01-01 00:00:00", creatTime: "2023-01-01 00:00:00", createUser: "Eason Chen", state: 1),
+        Activity(amSeqNo: "9997", activityId: "test9997", activityName: "TEST-9997", activityMaxNum: 99, activityStartTime: "2023-01-01 00:00:00", activityEndTime: "2023-01-01 00:00:00", creatTime: "2023-01-01 00:00:00", createUser: "Eason Chen", state: 1)
     ]
     
     var body: some View {
         NavigationStack {
-            Text("Activities You Participate In")
+            Text(self.description)
             List {
-                ForEach(activities) { activity in
+                ForEach(activities, id: \.self) { activity in
                     NavigationLink(
-                        "\(activity.id ?? "")-\(activity.name ?? "")",
-                        value: "\(String(describing: activity.id))-\(String(describing: activity.name))"
+                        "\(activity.activityId ?? "")-\(activity.activityName ?? "")",
+                        value: "\(String(describing: activity.activityId))-\(String(describing: activity.activityName))"
                     )
                     .navigationDestination(for: String.self) { textValue in
-                        ActivityView(title: "\(activity.name ?? "N/A")")
+                        ActivityView(title: "\(activity.activityName ?? "N/A")")
                     }
                 }
             }
+        }
+        .onAppear() {
+            let url = URL(string: "https://localhost:8443/api/v1/getActivityList?userAccount=\(UserInfo.shared.account)")!
+            var request = URLRequest(url: url)
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = "GET"
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                if let data = data, let activityWrapper = try? JSONDecoder().decode(ActivityWrapper.self, from: data), let activitiesRes = activityWrapper.activities {
+                    self.activities = activitiesRes
+                } else if let error = error {
+                    self.description = "Failed to retrieve data"
+                    print(error)
+                }
+            }
+            
+//            Activities you attend
+            task.resume()
         }
     }
 }
